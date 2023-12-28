@@ -11,24 +11,30 @@
 //   console.log('Script loaded:', script);
   // You can perform additional actions after the script is loaded
 // });
-function myFirst() {
-    myDisplayer("Hello");
-  }
+// function myFirst() {
+//     myDisplayer("Hello");
+//   }
   
-  function mySecond() {
-    myDisplayer("Goodbye");
-  }
+//   function mySecond() {
+//     myDisplayer("Goodbye");
+//   }
   
-  myFirst();
-  mySecond();
+//   myFirst();
+//   mySecond();
 
   function display(val){
-    document.getElementById("demo").innerHTML = val
+    //document.getElementById("demo").innerHTML = val
+    console.log(val)
   }
 
-  function add(n1,n2){
+  function add(n1,n2,callback){
     let sum = n1+n2
-    return sum
+    callback(sum)
   }
- 
-  display(add(5,5));
+  function multiply(n1,n2,callback){
+    let pdt = n1*n2
+    callback(pdt)
+  }
+  add(5,5,display)
+
+  multiply(2589,5469,display)
