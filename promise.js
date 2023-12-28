@@ -6,4 +6,4 @@ setTimeout(() => {
     reject("error")
 }, 1000);
 })
-promise.then(result=>console.log(result),error=>console.log(error))
+promise.then(result=>console.log(result),error=>console.log(error)).finally(()=>console.log("stop loading"))
