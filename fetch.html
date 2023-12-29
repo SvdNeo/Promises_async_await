@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Image</title>
+</head>
+<body>
+  <img id="rainbow" alt="Shutterstock Image">
+  <script>
+    fetch('/beautiful-young-student-standing-outside-holding-her-book-portrait-smiling-girl-red-close-to-chest-54278111.jpg')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Network response was not ok: ${res.status} - ${res.statusText}`);
+        }
+        return res.blob();
+      })
+      .then(blob => {
+        document.getElementById("rainbow").src = URL.createObjectURL(blob);
+      })
+      .catch(error => {
+        console.error("Error fetching image:", error);
+      });
+  </script>
+</body>
+</html>
