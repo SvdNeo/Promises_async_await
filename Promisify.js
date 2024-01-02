@@ -25,3 +25,18 @@ let loadScriptPromise = function load(src){
     })
 }
 loadScriptPromise("/promise.js").then(res=>console.log(res))
+
+function fetchData(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(() => {
+            const data = {message:"Hi its sanjay"}
+            resolve(data)
+        }, 3000);
+    })
+}
+
+const updateMessage=()=>{
+document.getElementById("container").innerHTML = data.message
+}
+fetchData().then(i=>{updateMessage(data)}
+    ).catch(err=>console.log(err))
