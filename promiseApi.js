@@ -21,6 +21,7 @@ const p1 = new Promise((resolve)=>setTimeout(() => {
   let names = ['iliakan', 'remy', 'jeresig'];
 
 let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+console.log(requests)
 
 Promise.all(requests)
   .then(responses => {
@@ -35,3 +36,16 @@ Promise.all(requests)
   .then(responses => Promise.all(responses.map(r => r.json())))
   // all JSON answers are parsed: "users" is the array of them
   .then(users => users.forEach(user => console.log(user.name)))
+
+  // Promise.all([
+  //   fetch('/template.html'),
+  //   fetch('/style.css'),
+  //   fetch('/data.json')
+
+  // ]).then(res=>console.log(res)); 
+
+  Promise.race([
+    new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
+    new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 3000)),
+    new Promise((resolve, reject) => setTimeout(() => resolve(3), 2000))
+  ]).then(res=>console.log(res));
