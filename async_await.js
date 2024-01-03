@@ -48,7 +48,7 @@ display();
   async function jokes(){
     try {
         const url  = await fetch("https://api.api-ninjas.com/v1/dadjokes?limit=1")
-        let joke = await url.json
+        let joke = await url.json()
         return joke
         
     } catch (error) {
@@ -57,3 +57,21 @@ display();
   }
   jokes().then((i)=>
   console.log(i))
+
+  //task 1
+  async function loadJson(url) {
+    const response = await fetch (url)
+    try {
+        if (response.status == 200){
+        
+        let data  = await response.json();
+        return data
+    }   
+    } catch (error) {
+        throw new Error(response.status);
+    }
+   
+  }
+  
+  loadJson('https://javascript.info/no-such-user.json')
+  .catch(err=>console.log(err));
