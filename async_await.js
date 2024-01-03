@@ -75,3 +75,50 @@ display();
   
   loadJson('https://javascript.info/no-such-user.json')
   .catch(err=>console.log(err));
+
+  //task 2 
+  class HttpError extends Error {
+    constructor(response) {
+      super(`${response.status} for ${response.url}`);
+      this.name = 'HttpError';
+      this.response = response;
+    }
+  }
+  
+  async function loadJson1(url) {
+    const response = await fetch (url)
+    try {
+        if (response.status == 200){
+        
+        let data  = await response.json();
+        return data
+    }   
+    } catch (error) {
+        throw new HttpError(response);
+    }
+  }
+  async function demoGithubUser() {
+    let user;
+  
+    while (!user) {
+      try {
+        let name = prompt("Enter a name?", "iliakan");
+        user = await loadJson(`https://api.github.com/users/${name}`);
+        alert(`Full name: ${user.name}.`);
+      } catch (err) {
+        if (err instanceof HttpError && err.response.status === 404) {
+          alert("No such user, please reenter.");
+        } else {
+          // Re-throwing other errors
+          throw err;
+        }
+      }
+    }
+  
+    return user;
+  }
+  
+  // Call the async function
+  demoGithubUser().then((user) => {
+    console.log("Final user:", user);
+  });
