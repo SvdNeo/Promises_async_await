@@ -39,3 +39,21 @@ async function display() {
 }
 
 display();
+
+// async function f() {
+//     throw new Error("Whoops!");
+//   }
+//   f()
+
+  async function jokes(){
+    try {
+        const url  = await fetch("https://api.api-ninjas.com/v1/dadjokes?limit=1")
+        let joke = await url.json
+        return joke
+        
+    } catch (error) {
+        console.log(error)
+    }
+  }
+  jokes().then((i)=>
+  console.log(i))
