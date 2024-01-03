@@ -1,0 +1,1 @@
+export let admin = {name:"sanjay"}
