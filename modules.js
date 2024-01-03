@@ -1,8 +1,10 @@
-import { admin, sayHi } from "./modules1.js";
+import { admin, sayBye, sayHi,config, obj as obj1} from "./modules1.js";
 
 console.log(admin.name)
 admin.name = "vinay";
 console.log(admin.name)
-import {config} from './modules1.js';
-config.user = "Pete";
+
+config.user = "Devanya";
 sayHi()
+sayBye()
+console.log(obj1.team)
